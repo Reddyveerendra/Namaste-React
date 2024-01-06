@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inception</title>
+</head>
+
+<body>
+    <div id="main">
+        <h2>Hello world</h2>
+    </div>
+    <script a src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        const main = ReactDOM.createRoot(document.getElementById("main"));
+        const h1 = React.createElement("h2", "", "hi i am veerendra");
+        const h2 = React.createElement("h2", "", "This is my first React project in the Namaste React series");
+        const div = React.createElement("div", "", h1, h2);
+        main.render(div);
+    </script>
+</body>
+
+</html>
