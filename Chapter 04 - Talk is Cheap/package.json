@@ -1,0 +1,11 @@
+{
+  "name": "chapter-04---talk-is-cheap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "example_user <example-user@example.com>",
+  "license": "MIT"
+}
