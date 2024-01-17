@@ -1,0 +1,49 @@
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.text-overlay {
+  font-size: large;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Adjust the background color and opacity as needed */
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+.info {
+  line-height: 2px;
+}
+.centered-dot {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%; /* To make it a circle */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.cards {
+  margin: 10px;
+  transition: box-shadow 1s; /* Add a smooth transition effect for the hover */
+
+  /* Define the default styles */
+  &:hover {
+    box-shadow: 0 0 30px rgba(255, 207, 14, 0.826); /* Add a box shadow on hover */
+  }
+}
