@@ -38,7 +38,8 @@ export default App = () => {
       console.log(json);
       setErr(false);
       const data =
-        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
       setImportedData(
         data.map((item) => {
           return item.info;
