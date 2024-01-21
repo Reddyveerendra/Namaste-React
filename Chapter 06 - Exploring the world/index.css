@@ -32,6 +32,7 @@ body {
   gap: 75px;
 }
 .sign-in {
+  width: 92px;
   height: max-content;
   background-color: #24252a;
   color: #0387a1;
@@ -186,4 +187,7 @@ body {
   border-radius: 10px; /* Optional: Add rounded corners */
   color: white; /* Text color */
   text-align: center;
+}
+.shimmer-info > * {
+  margin: 2px;
 }

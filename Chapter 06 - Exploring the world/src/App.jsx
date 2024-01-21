@@ -4,6 +4,7 @@ import { Main } from "./Main";
 import { Footer } from "./Footer";
 import { Error } from "./Error";
 import "../index.css";
+import { Shimmer } from "./Shimmer";
 import { useState, useEffect } from "react";
 // const variables
 // components
@@ -14,6 +15,7 @@ export default App = () => {
   const [lon, setLon] = useState(72.88662753964906);
   const [importedData, setImportedData] = useState([]);
   const [err, setErr] = useState(false);
+  const [signTest, setSignTest] = useState(false);
   useEffect(() => {
     fetchData();
   }, [lat]);
@@ -31,11 +33,9 @@ export default App = () => {
       `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lon}&is-seo-homepage-enabled=true&page_type=DESKTOP_W`
     );
     const json = await response.json();
-    console.log(json);
     if (json.data.cards.length <= 4) {
       setErr(true);
     } else {
-      console.log(json);
       setErr(false);
       const data =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
@@ -101,6 +101,11 @@ export default App = () => {
       })
     );
   };
+  const signClick = () => {
+    setSignTest((prev) => {
+      return !prev;
+    });
+  };
   return (
     <>
       {
@@ -115,9 +120,18 @@ export default App = () => {
           place={place}
           placeChange={placeChange}
           geoFinder={geoFinder}
+          signTest={signTest}
+          signClick={signClick}
         />
       }
-      {err ? <Error place={place} /> : <Main data={dataToDisplay} />}
+      {importedData.length == 0 ? (
+        <Shimmer />
+      ) : err ? (
+        <Error place={place} />
+      ) : (
+        <Main data={dataToDisplay} />
+      )}
+      {}
       <Footer />
     </>
   );

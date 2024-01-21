@@ -57,8 +57,15 @@ export const Header = (props) => {
               ""
             )}
           </div>
-          <button className="sign-in">
-            <i className="bi bi-person-fill button"></i> Sign In
+          <button
+            className="sign-in"
+            onClick={() => {
+              props.signClick();
+            }}
+            type="submit"
+          >
+            <i className="bi bi-person-fill button"></i>{" "}
+            {props.signTest ? "Sign out" : "Sign in"}
           </button>
           <button className="contact">
             <i className="bi bi-info-circle-fill"></i> Contact
