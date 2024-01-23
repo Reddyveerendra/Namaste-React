@@ -191,3 +191,7 @@ body {
 .shimmer-info > * {
   margin: 2px;
 }
+a {
+  text-decoration: none;
+  color: #0387a1;
+}

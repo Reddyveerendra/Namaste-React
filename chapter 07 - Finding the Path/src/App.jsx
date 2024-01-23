@@ -2,10 +2,17 @@ import React, { useEffect } from "react";
 import { Header } from "./Header";
 import { Main } from "./Main";
 import { Footer } from "./Footer";
-import { Error } from "./Error";
+import { Error, NotFoundPage } from "./Error";
 import "../index.css";
 import { Shimmer } from "./Shimmer";
 import { useState, useEffect } from "react";
+import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { NotFoundPage } from "./Error";
+import Contact from "./Contact";
+import SignIn from "./SignIn";
+import Cart from "./Cart";
+import Restaurant from "./Restaurant";
+import { resList } from "./config";
 // const variables
 // components
 export default App = () => {
@@ -16,6 +23,7 @@ export default App = () => {
   const [importedData, setImportedData] = useState([]);
   const [err, setErr] = useState(false);
   const [signTest, setSignTest] = useState(false);
+  const [errorLocation, setErrorLocation] = useState("");
   useEffect(() => {
     fetchData();
   }, [lat]);
@@ -24,18 +32,18 @@ export default App = () => {
       `https://geocode.maps.co/search?q=${place}&api_key=${myKey}`
     );
     const json = await resp.json();
-    setPlace(json[0].display_name);
-    setLat(json[0].lat);
-    setLon(json[0].lon);
+    try {
+      setPlace(json[0].display_name);
+      setLat(json[0].lat);
+      setLon(json[0].lon);
+    } catch (e) {
+      setErr(true);
+    }
   }
   async function fetchData() {
-    const response = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lon}&is-seo-homepage-enabled=true&page_type=DESKTOP_W`
-    );
+    const response = await fetch(`${resList[0]}${lat}&lng=${lon}${resList[2]}`);
     const json = await response.json();
-    if (json.data.cards.length <= 4) {
-      setErr(true);
-    } else {
+    try {
       setErr(false);
       const data =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
@@ -55,6 +63,9 @@ export default App = () => {
           return item.info;
         })
       );
+    } catch (e) {
+      setErrorLocation(place);
+      setErr(true);
     }
   }
   // header start
@@ -106,33 +117,60 @@ export default App = () => {
       return !prev;
     });
   };
-  return (
-    <>
-      {
-        <Header
-          Suggestion={suggestion}
-          searchTextManger={searchTextManger}
-          selectResult={selectResult}
-          typing_function={typing_function}
-          searchSuggestion={searchSuggestion}
-          searchText={searchText}
-          typing={typing}
-          place={place}
-          placeChange={placeChange}
-          geoFinder={geoFinder}
-          signTest={signTest}
-          signClick={signClick}
-        />
-      }
-      {importedData.length == 0 ? (
-        <Shimmer />
-      ) : err ? (
-        <Error place={place} />
-      ) : (
-        <Main data={dataToDisplay} />
-      )}
-      {}
-      <Footer />
-    </>
-  );
+  const MainMatch = () => {
+    return importedData.length == 0 ? (
+      <Shimmer />
+    ) : err ? (
+      <Error errorLocation={errorLocation} />
+    ) : (
+      <Main data={dataToDisplay} />
+    );
+  };
+  const AppLayout = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <>
+          <Header
+            Suggestion={suggestion}
+            searchTextManger={searchTextManger}
+            selectResult={selectResult}
+            typing_function={typing_function}
+            searchSuggestion={searchSuggestion}
+            searchText={searchText}
+            typing={typing}
+            place={place}
+            placeChange={placeChange}
+            geoFinder={geoFinder}
+            signTest={signTest}
+            signClick={signClick}
+          />
+          <Outlet />
+          <Footer />
+        </>
+      ),
+      errorElement: <NotFoundPage />,
+      children: [
+        { path: "/contact", element: <Contact /> },
+        {
+          path: "/",
+          element: <MainMatch />,
+        },
+        {
+          path: "/sign-in",
+          element: <SignIn />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
+        {
+          path: "/restaurant/:id",
+          element: <Restaurant />,
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={AppLayout} />;
 };

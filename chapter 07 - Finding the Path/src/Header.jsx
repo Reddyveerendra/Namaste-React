@@ -3,15 +3,19 @@ import logo from "../image/logo.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { SearchSuggestion } from "./Search";
+import { Link } from "react-router-dom";
 export const Header = (props) => {
   return (
     <>
       <div className="header">
         <div className="location-logo">
-          <div className="logo">
-            <img src={logo} alt="Logo.png" />
-            <h2>Parcel</h2>
-          </div>
+          <Link path="/">
+            <div className="logo">
+              <img src={logo} alt="Logo.png" />
+              <h2>Parcel</h2>
+            </div>
+          </Link>
+
           <div className="location">
             <input
               type="text"
@@ -57,22 +61,29 @@ export const Header = (props) => {
               ""
             )}
           </div>
-          <button
-            className="sign-in"
-            onClick={() => {
-              props.signClick();
-            }}
-            type="submit"
-          >
-            <i className="bi bi-person-fill button"></i>{" "}
-            {props.signTest ? "Sign out" : "Sign in"}
-          </button>
-          <button className="contact">
-            <i className="bi bi-info-circle-fill"></i> Contact
-          </button>
-          <button className="cart">
-            <i className="bi bi-cart"></i> Cart
-          </button>
+          <Link to="/sign-in">
+            <button
+              className="sign-in"
+              onClick={() => {
+                props.signClick();
+              }}
+              type="submit"
+            >
+              <i className="bi bi-person-fill button"></i>{" "}
+              {props.signTest ? "Sign out" : "Sign in"}
+            </button>
+          </Link>
+
+          <Link to="/contact">
+            <button className="contact" type="submit">
+              <i className="bi bi-info-circle-fill"></i> Contact
+            </button>
+          </Link>
+          <Link to="/cart">
+            <button className="cart">
+              <i className="bi bi-cart"></i> Cart
+            </button>
+          </Link>
         </div>
       </div>
     </>
