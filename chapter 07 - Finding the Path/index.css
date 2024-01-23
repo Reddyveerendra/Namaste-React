@@ -1,0 +1,193 @@
+body {
+  margin: 0;
+}
+* {
+  border: 0px solid black;
+}
+.header {
+  border: 1px solid black;
+  padding: 1.3%;
+  background-color: #24252a;
+  display: flex;
+  justify-items: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo > img {
+  height: 50px;
+}
+.search {
+  color: #0387a1;
+  transition: 0.5s;
+}
+.search > button {
+  height: max-content;
+  background-color: #24252a;
+}
+.search > i {
+  border: #0387a1;
+}
+.left-header {
+  display: flex;
+  gap: 75px;
+}
+.sign-in {
+  width: 92px;
+  height: max-content;
+  background-color: #24252a;
+  color: #0387a1;
+  border: 0px solid black;
+  transition: 0.5s;
+  &:hover {
+    color: #24252a;
+    background-color: #0387a1;
+  }
+}
+.contact {
+  color: #0387a1;
+  background-color: #24252a;
+  border: 0px solid black;
+  transition: 0.5s;
+  &:hover {
+    color: #24252a;
+    background-color: #0387a1;
+  }
+}
+.cart {
+  color: #0387a1;
+  background-color: #24252a;
+  border: 0px solid black;
+  transition: 0.5s;
+  &:hover {
+    color: #24252a;
+    background-color: #0387a1;
+  }
+}
+.logo > h3 {
+  color: #0387a1;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+}
+.logo > h2 {
+  color: #0387a1;
+  margin: 0;
+  margin-top: 4px;
+  font-family: "bootstrap-icons";
+  transition: 0.5s;
+  &:hover {
+    color: #24252a;
+    background-color: #0387a1;
+  }
+}
+/* main */
+
+.restaurants {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.cards {
+  width: 230px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  padding: 8px;
+  margin: 28px;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+.background-image {
+  width: 100%;
+  height: auto;
+}
+
+.text-overlay {
+  position: absolute;
+  bottom: 0%;
+  color: aliceblue;
+  width: 250px;
+}
+
+/* Additional styling for the text */
+.text-overlay h2 {
+  font-size: 24px;
+  margin: 0%;
+}
+
+.text-overlay p {
+  font-size: 16px;
+  margin: 0%;
+}
+.image-container > img {
+  width: 250px;
+  height: 170px;
+  border-radius: 16px;
+}
+.info {
+  padding: 6px;
+  margin: 0px;
+  column-gap: 0px;
+}
+.info > * {
+  margin: 0px;
+}
+.star {
+  color: gold;
+  background: light-green;
+  border-radius: 3px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+  max-width: "fit-content";
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.searchSuggestion > button {
+  width: 100%;
+  text-align: start;
+}
+.location {
+  padding-top: 3%;
+}
+.place > i {
+  color: #0387a1;
+}
+.location-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+.location > input {
+  width: 150px;
+}
+.text-background {
+  background-color: rgba(0, 0, 0, 0.7); /* Black with 70% transparency */
+  width: 100%;
+  border-radius: 10px; /* Optional: Add rounded corners */
+  color: white; /* Text color */
+  text-align: center;
+}
+.shimmer-info > * {
+  margin: 2px;
+}
