@@ -25,6 +25,10 @@ const appLayout = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
+        path: "/",
+        element: <Main />,
+      },
+      {
         path: "/:location",
         element: <Main />,
       },

@@ -4,7 +4,7 @@ import { locationFetcher, restaurantFetcher, apiKey } from "./Config";
 import { Link } from "react-router-dom";
 export const SearchSuggestion = (props) => {
   const [searchSuggestionList, setSearchSuggestionList] = useState([]);
-  const location = useParams().location;
+  let location = useParams().location;
   async function restaurantFetch(lon, lat) {
     try {
       const res = await fetch(
@@ -26,7 +26,7 @@ export const SearchSuggestion = (props) => {
       console.log("error in restaurantFetch");
     }
   }
-  async function locationFetch(value) {
+  async function locationFetch(value = "mumbai") {
     try {
       const res = await fetch(
         locationFetcher[0] + value + locationFetcher[1] + apiKey

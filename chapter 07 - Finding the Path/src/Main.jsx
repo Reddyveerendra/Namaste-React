@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { restaurantFetcher, locationFetcher, apiKey } from "./Config";
 import Card from "./Card";
-const Main = () => {
-  const id = useParams();
+const Main = (props) => {
+  let id = useParams();
   const [restaurants, setRestaurants] = useState([]);
   async function restaurantFetch(lon, lat) {
     try {
@@ -24,7 +24,7 @@ const Main = () => {
       console.log("error in restaurantFetch");
     }
   }
-  async function locationFetch(value) {
+  async function locationFetch(value = "mumbai") {
     try {
       const res = await fetch(
         locationFetcher[0] + value + locationFetcher[1] + apiKey
