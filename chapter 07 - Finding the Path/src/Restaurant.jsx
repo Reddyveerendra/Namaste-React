@@ -1,13 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-function Restaurant() {
-  const prams = useParams();
-  console.log(prams);
-  return (
-    <div>
-      <h1>Restaurant</h1>
-    </div>
-  );
-}
+const Restaurant = () => {
+  const p = useParams();
+  return <div>{p.location + p.id}</div>;
+};
 
 export default Restaurant;

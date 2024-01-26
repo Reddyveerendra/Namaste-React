@@ -1,54 +1,60 @@
-import { imgPrefix } from "./config";
-import { Error } from "./Error";
+import React, { useEffect, useState } from "react";
 import { Shimmer } from "./Shimmer";
-import { Link } from "react-router-dom";
-export const Main = (props) => {
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { restaurantFetcher, locationFetcher, apiKey } from "./Config";
+import Card from "./Card";
+const Main = () => {
+  const id = useParams();
+  const [restaurants, setRestaurants] = useState([]);
+  async function restaurantFetch(lon, lat) {
+    try {
+      const res = await fetch(
+        restaurantFetcher[0] +
+          lat +
+          restaurantFetcher[1] +
+          lon +
+          restaurantFetcher[2]
+      );
+      const json = await res.json();
+      setRestaurants(
+        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      );
+    } catch {
+      console.log("error in restaurantFetch");
+    }
+  }
+  async function locationFetch(value) {
+    try {
+      const res = await fetch(
+        locationFetcher[0] + value + locationFetcher[1] + apiKey
+      );
+      const json = await res.json();
+      restaurantFetch(json[0].lon, json[0].lat);
+    } catch {
+      console.log("error in locationFetch");
+    }
+  }
+  useEffect(() => {
+    locationFetch(id.location);
+  }, [id]);
   return (
-    <div className="restaurants">
-      {props.data.map((item) => (
-        <Link to={"/restaurant/" + item.id}>
-          {
-            <div key={item.name} className="cards">
-              <div className="image-container">
-                <img
-                  className="background-image"
-                  src={imgPrefix + item.cloudinaryImageId}
-                  alt={item.name}
-                />
-                <div className="text-overlay">
-                  <div className="text-background">
-                    <h2>{item.aggregatedDiscountInfoV3.header}</h2>
-                    <p>{item.aggregatedDiscountInfoV3.subHeader}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="info">
-                <h5>
-                  {item.name.length <= 20
-                    ? item.name
-                    : item.name.slice(0, 17) + "..."}
-                </h5>
-                <div>
-                  <p>
-                    <i className="bi bi-star-fill star"></i>
-                    {" " +
-                      item.avgRatingString +
-                      " . " +
-                      item.sla.deliveryTime +
-                      " mins"}
-                  </p>
-                </div>
-                <h6>
-                  {item.cuisines.join(",") <= 25
-                    ? item.cuisines.join(",")
-                    : item.cuisines.join(",").slice(0, 22) + "..."}
-                </h6>
-                <h6>{item.areaName}</h6>
-              </div>
-            </div>
-          }
-        </Link>
-      ))}
+    <div className="Main" style={style.restaurants}>
+      {restaurants?.length > 0 ? (
+        restaurants.map((item) => {
+          return <Card {...item} />;
+        })
+      ) : (
+        <Shimmer />
+      )}
     </div>
   );
 };
+const style = {
+  restaurants: {
+    flexWrap: "wrap",
+    justifyContent: "center",
+    display: "flex",
+  },
+};
+export default Main;

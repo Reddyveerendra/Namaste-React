@@ -29,17 +29,14 @@ export const Header = (props) => {
             </button>
           </div>
         </div>
-
         <div className="left-header">
           <div className="search dropdown">
-            {
-              <input
-                type="text"
-                value={props.searchText}
-                onChange={props.searchTextManger}
-                placeholder="Search here..."
-              />
-            }
+            <input
+              type="text"
+              value={props.searchText}
+              onChange={props.searchTextManger}
+              placeholder="Search here..."
+            />
             <button
               type="button"
               onClick={() => {
