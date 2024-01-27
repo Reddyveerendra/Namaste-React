@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { imgPrefix } from "./Config";
 import { useState } from "react";
+import CircleSquareIconRed from "./CircleSquareIcon";
+import { CircleSquareIconGreen } from "./CircleSquareIcon";
 const FoodItems = (props) => {
   const [count, SetCount] = useState(0);
   const item = props.item;
@@ -17,6 +19,11 @@ const FoodItems = (props) => {
       }}
     >
       <div className="left_item" style={{ textWrap: "pretty" }}>
+        {item.itemAttribute.vegClassifier == "VEG" ? (
+          <CircleSquareIconGreen />
+        ) : (
+          <CircleSquareIconRed />
+        )}
         <div className="itemName">{item.name}</div>
         <div className="price">₹ {item.price / 100}</div>
         <div
@@ -27,11 +34,15 @@ const FoodItems = (props) => {
         </div>
       </div>
       <div className="rightItem" style={{ marginLeft: "10%" }}>
-        <img
-          src={imgPrefix + item.imageId}
-          alt={item.imageId}
-          style={{ height: "100px", width: "120px" }}
-        />
+        {item.imageId ? (
+          <img
+            src={imgPrefix + item?.imageId}
+            alt={item?.imageId}
+            style={{ height: "100px", width: "120px" }}
+          />
+        ) : (
+          ""
+        )}
         <div
           className="counter"
           style={{
