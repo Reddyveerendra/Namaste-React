@@ -1,12 +1,26 @@
 import React from "react";
+import Profile1 from "./Profile1";
+import Profile2 from "./Profile2";
 
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      message: "hi i am to be updated",
+      message: "hi I am to be updated",
       count: 0,
     };
+    console.log("hi this is parent profile constructor");
+  }
+
+  componentDidMount() {
+    console.log("hi this is parent profile mount");
+    this.intervalId = setInterval(() => {
+      console.log("hi");
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   render() {
@@ -16,6 +30,9 @@ class Login extends React.Component {
           {this.state.message}
         </h2>
         <h3>{this.state.count}</h3>
+        <Profile1 name={"Profile1"} />
+        <Profile2 name={"Profile2"} />
+        {console.log("hi this is parent profile render")}
       </>
     );
   }
