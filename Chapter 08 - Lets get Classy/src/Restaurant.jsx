@@ -45,15 +45,18 @@ const Restaurant = () => {
   }
   useEffect(() => {
     locationFetch(params.location);
-  }, []);
+  }, [params]);
+  if (!restaurant) {
+    return null;
+  }
   return (
     <>
       {JSON.stringify({}) === JSON.stringify(restaurant) ? (
         <div style={{ margin: "5% 20%" }}>
           {Array(5)
             .fill("")
-            .map(() => {
-              return <ShimmerItem />;
+            .map((a, i) => {
+              return <ShimmerItem i={i} />;
             })}
         </div>
       ) : (
@@ -108,8 +111,8 @@ const Restaurant = () => {
           </div>
           <hr style={{ border: "none", borderTop: "4px dotted black" }} />
           <div className="foodItems">
-            {menuItemsData.map((item) => (
-              <FoodItems item={item} />
+            {menuItemsData.map((item, i) => (
+              <FoodItems item={item} i={i} />
             ))}
           </div>
         </div>

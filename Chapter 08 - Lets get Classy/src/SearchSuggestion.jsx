@@ -50,7 +50,7 @@ export const SearchSuggestion = (props) => {
           className="searchSuggestion dropdown-content"
           style={styles.dropdownContent}
         >
-          {searchSuggestionList.map((item) => {
+          {searchSuggestionList?.map((item) => {
             return item[0].includes(props.text) ? (
               <Link
                 to={`/${location}/${item[1]}`}

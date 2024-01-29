@@ -19,7 +19,7 @@ const FoodItems = (props) => {
       }}
     >
       <div className="left_item" style={{ textWrap: "pretty" }}>
-        {item.itemAttribute.vegClassifier == "VEG" ? (
+        {item.itemAttribute?.vegClassifier === "VEG" ? (
           <CircleSquareIconGreen />
         ) : (
           <CircleSquareIconRed />

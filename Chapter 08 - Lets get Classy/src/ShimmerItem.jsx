@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShimmerItem = () => (
+const ShimmerItem = (props) => (
   <div
     style={{
       display: "flex",
@@ -9,6 +9,7 @@ const ShimmerItem = () => (
       justifyContent: "space-between",
       padding: "5%",
     }}
+    className={`item${props.i}`}
   >
     <div style={{ textWrap: "pretty" }}>
       <div
