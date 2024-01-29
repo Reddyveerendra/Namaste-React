@@ -1,7 +1,6 @@
 import React from "react";
 import Profile1 from "./Profile1";
-import Profile2 from "./Profile2";
-
+import Profile2 from "./profile2";
 class Login extends React.Component {
   constructor() {
     super();
