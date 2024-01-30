@@ -9,6 +9,8 @@ import Contact from "./Contact";
 import Login from "./Login";
 import Cart from "./Cart";
 import Restaurant from "./Restaurant";
+import { lazy, Suspense } from "react";
+const Instamart = lazy(() => import("./Instamart"));
 function App() {
   return (
     <>
@@ -47,6 +49,16 @@ const appLayout = createBrowserRouter([
       {
         path: "/:location/:id",
         element: <Restaurant />,
+      },
+      {
+        path: "/:location/instamart",
+        element: (
+          <div>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Instamart />
+            </Suspense>
+          </div>
+        ),
       },
     ],
   },

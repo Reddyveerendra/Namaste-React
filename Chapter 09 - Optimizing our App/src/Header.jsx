@@ -102,7 +102,7 @@ const Header = () => {
               </button>
             </div>
           </Link>
-          <Link to="/cart">
+          <Link to="/mumbai/instamart">
             <div className="cart">
               <button type="button" style={style.cartButton}>
                 <i className="bi bi-cart"></i> Cart
