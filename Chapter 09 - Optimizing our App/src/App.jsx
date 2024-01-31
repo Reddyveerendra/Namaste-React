@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot } from "react-dom"; // Correct import statement
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
@@ -10,8 +10,12 @@ import Login from "./Login";
 import Cart from "./Cart";
 import Restaurant from "./Restaurant";
 import { lazy, Suspense } from "react";
+import { Shimmer } from "./Shimmer";
+
 const Instamart = lazy(() => import("./Instamart"));
+
 function App() {
+  console.log(Shimmer)
   return (
     <>
       <Header />
@@ -20,6 +24,7 @@ function App() {
     </>
   );
 }
+
 const appLayout = createBrowserRouter([
   {
     path: "/",

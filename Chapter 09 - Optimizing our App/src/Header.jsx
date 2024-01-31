@@ -16,17 +16,15 @@ const Header = () => {
     });
   }
   return (
-    <div className="Header" style={style.header}>
+    <div className="w-[1257px] flex  p-4 bg-[#24252A] align-middle">
       <Link to="/mumbai">
-        <div className="leftHeader" style={style.leftHeader}>
-          <img src={logo} alt="Logo" style={style.logo} />
-          <h2 className="appName" style={style.appName}>
-            Parcel
-          </h2>
+        <div className=" flex  center w-[160px]">
+          <img src={logo} alt="Logo" className="h-[50px]" />
+          <h2 className="color-[#0387A1]">Parcel</h2>
         </div>
       </Link>
-      <div className="rightHeader" style={style.rightHeader}>
-        <div className="searchBarLocation">
+      <div className="flex justify-between">
+        <div className="algin-center w-[250px] items-center flex">
           {locationBar ? (
             <>
               <input
@@ -46,7 +44,6 @@ const Header = () => {
                   onClick={() => {
                     locationBarPop();
                   }}
-                  style={style.searchLocationButton}
                 >
                   <i className="bi bi-geo-alt-fill"></i>
                 </button>
@@ -54,10 +51,10 @@ const Header = () => {
             </>
           ) : (
             <h4
+              className="text-[aliceblue]"
               onClick={() => {
                 locationBarPop();
               }}
-              style={style.h4}
             >
               {locationText.split(" ")[0].slice(0, 7)}
               {"..."}
@@ -65,8 +62,8 @@ const Header = () => {
             </h4>
           )}
         </div>
-        <div className="nav" style={style.nav}>
-          <div className="search dropdown" style={style.dropdown}>
+        <div className="flex justify-evenly w-[800px] items-center">
+          <div className="relative inline-block">
             <input
               type="text"
               value={restaurant}
@@ -82,29 +79,28 @@ const Header = () => {
                   return !val;
                 });
               }}
-              style={style.searchRestaurantButton}
             >
-              <i className="bi bi-search search"></i>
+              <i className="bi bi-search search bg-[#0387A1] p-[2px]"></i>
             </button>
             {dropDown ? <SearchSuggestion text={restaurant} /> : ""}
           </div>
           <Link to="/login">
             <div className="login">
-              <button type="button" style={style.loginButton}>
+              <button type="button">
                 <i className="bi bi-person-fill button"></i> login
               </button>
             </div>
           </Link>
           <Link to="/contact">
             <div className="contact">
-              <button type="button" style={style.contactButton}>
+              <button type="button">
                 <i className="bi bi-info-circle-fill"></i> Contact
               </button>
             </div>
           </Link>
           <Link to="/mumbai/instamart">
             <div className="cart">
-              <button type="button" style={style.cartButton}>
+              <button type="button">
                 <i className="bi bi-cart"></i> Cart
               </button>
             </div>
@@ -113,69 +109,5 @@ const Header = () => {
       </div>
     </div>
   );
-};
-const style = {
-  header: {
-    height: "80px",
-    width: "100vw",
-    boarder: "1px solid black",
-    backgroundColor: "#24252a",
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "10px",
-  },
-  leftHeader: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  logo: {
-    height: "50px",
-  },
-  appName: {
-    color: "#0387A1",
-    paddingTop: "11px",
-  },
-  h4: {
-    color: "white",
-    marginRight: "5vw",
-  },
-  rightHeader: {
-    display: "flex",
-    alignItems: "center",
-    columnGap: "21vw",
-    paddingTop: "10px",
-  },
-  nav: {
-    display: "flex",
-    columnGap: "4vw",
-  },
-  searchLocationButton: {
-    color: "#24252A",
-    backgroundColor: "#0387A1",
-  },
-  searchRestaurantButton: {
-    color: "#24252A",
-    backgroundColor: "#0387A1",
-  },
-  loginButton: {
-    backgroundColor: "#24252A",
-    color: "#0387A1",
-    border: "0px solid",
-  },
-  contactButton: {
-    backgroundColor: "#24252A",
-    color: "#0387A1",
-    border: "0px solid",
-  },
-  cartButton: {
-    backgroundColor: "#24252A",
-    color: "#0387A1",
-    border: "0px solid",
-  },
-  dropdown: {
-    position: "relative",
-    display: "inline-block",
-  },
 };
 export default Header;

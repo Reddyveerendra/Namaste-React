@@ -30,13 +30,13 @@ const Main = (props) => {
         locationFetcher[0] + value + locationFetcher[1] + apiKey
       );
       const json = await res.json();
-      restaurantFetch(json[0].lon, json[0].lat);
+      return restaurantFetch(json[0].lon, json[0].lat);
     } catch {
       console.log("error in locationFetch");
     }
   }
   useEffect(() => {
-    locationFetch(id.location);
+    setRestaurants(locationFetch(id.location));
   }, [id]);
   return (
     <div className="Main" style={style.restaurants}>

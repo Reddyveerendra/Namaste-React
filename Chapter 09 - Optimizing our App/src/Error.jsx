@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import error from "../image/error.png";
+import { Link } from "react-router-dom";
 const ErrorPageContainer = styled.div`
   display: flex;
   flex-direction: column;
