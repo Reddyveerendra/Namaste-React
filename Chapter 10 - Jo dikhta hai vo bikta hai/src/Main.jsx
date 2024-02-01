@@ -41,8 +41,8 @@ const Main = (props) => {
   return (
     <div className="Main" style={style.restaurants}>
       {restaurants?.length > 0 ? (
-        restaurants.map((item) => {
-          return <Card {...item} />;
+        restaurants.map((item, i) => {
+          return <Card {...item} key={i} />;
         })
       ) : (
         <Shimmer />

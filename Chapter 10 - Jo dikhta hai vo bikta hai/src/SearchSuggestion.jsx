@@ -46,14 +46,15 @@ export const SearchSuggestion = (props) => {
         ""
       ) : (
         <div className="absolute bg-gray-200 min-w-230 overflow-auto border border-gray-300 z-10 max-w-max">
-          {searchSuggestionList?.map((item) => {
+          {searchSuggestionList?.map((item, i) => {
             return item[0].includes(props.text) ? (
               <Link
+                key={i}
                 to={`/${location}/${item[1]}`}
-                key={item[0]} // Added key prop here
                 className="text-black py-3 px-4 no-underline block"
+                onClick={() => props.searchBarPop()}
               >
-                <button onClick={() => ""}>
+                <button>
                   {item[0].length <= 25
                     ? item[0]
                     : `${item[0].slice(0, 20)}...`}

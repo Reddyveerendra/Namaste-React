@@ -15,6 +15,11 @@ const Header = () => {
       return !val;
     });
   }
+  function searchBarPop() {
+    setDropDown((val) => {
+      return !val;
+    });
+  }
   return (
     <div className="w-[1257px] flex  p-4 bg-[#24252A] align-middle">
       <Link to="/mumbai">
@@ -70,19 +75,24 @@ const Header = () => {
               onChange={(e) => {
                 setRestaurant(e.target.value);
               }}
+              onClick={() => {
+                searchBarPop();
+              }}
               placeholder="Search here..."
             />
             <button
               type="button"
               onClick={() => {
-                setDropDown((val) => {
-                  return !val;
-                });
+                searchBarPop();
               }}
             >
               <i className="bi bi-search search bg-[#0387A1] p-[2px]"></i>
             </button>
-            {dropDown ? <SearchSuggestion text={restaurant} /> : ""}
+            {dropDown ? (
+              <SearchSuggestion text={restaurant} searchBarPop={searchBarPop} />
+            ) : (
+              ""
+            )}
           </div>
           <Link to="/login">
             <div className="login">

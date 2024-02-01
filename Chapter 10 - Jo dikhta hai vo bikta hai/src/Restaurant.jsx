@@ -6,12 +6,21 @@ import { imgPrefix } from "./Config";
 import ShimmerItem from "./ShimmerItem";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import ItemsGroup from "./ItemsGroup";
 import FoodItems from "./foodItems";
 import Error from "./Error";
 const Restaurant = () => {
+  const popDisFun = (val) => {
+    if (popDis == val) {
+      setPopDis(null);
+    } else {
+      setPopDis(val);
+    }
+  };
   const params = useParams();
   const [restaurant, setRestaurant] = useState({});
   const [menuItemsData, setMenuItemsData] = useState([]);
+  const [popDis, setPopDis] = useState(null);
   async function locationFetch(value = "mumbai") {
     try {
       const res = await fetch(
@@ -35,9 +44,6 @@ const Restaurant = () => {
           .find((x) => x.groupedCard)
           ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((x) => x.card?.card)
           ?.filter((x) => x["@type"] == menuType)
-          ?.map((x) => x.itemCards)
-          .flat()
-          .map((x) => x.card?.info) || []
       );
     } catch {
       console.log("error in list");
@@ -111,8 +117,14 @@ const Restaurant = () => {
           </div>
           <hr style={{ border: "none", borderTop: "4px dotted black" }} />
           <div className="foodItems">
-            {menuItemsData.map((item, i) => (
-              <FoodItems item={item} i={i} />
+            {menuItemsData.map((cat, i) => (
+              // <FoodItems item={item} i={i} />
+              <ItemsGroup
+                cat={cat}
+                popDis={popDis}
+                i={i}
+                popDisFun={popDisFun}
+              />
             ))}
           </div>
         </div>

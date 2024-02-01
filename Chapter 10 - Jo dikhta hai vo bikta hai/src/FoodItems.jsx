@@ -11,8 +11,7 @@ const FoodItems = (props) => {
       <div
         className="flex items-center justify-between"
         style={{
-          margin: "3% 0%",
-          borderBottom: "1px solid #ccc",
+          margin: "0% 0%",
           padding: "5%",
         }}
       >
@@ -36,12 +35,12 @@ const FoodItems = (props) => {
             <img
               src={imgPrefix + item?.imageId}
               alt={item?.imageId}
-              className="h-100 w-120"
+              className="h-[71px] w-[84px]"
             />
           ) : (
             ""
           )}
-          <div className="counter flex justify-center gap-10 mt-10">
+          <div className="counter flex justify-center gap-[22px] mt-[10px]">
             <button
               type="button"
               onClick={() => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom"; // Correct import statement
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { StrictMode } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Error from "./Error";
@@ -15,7 +16,7 @@ import { Shimmer } from "./Shimmer";
 const Instamart = lazy(() => import("./Instamart"));
 
 function App() {
-  console.log(Shimmer)
+  console.log(Shimmer);
   return (
     <>
       <Header />
@@ -70,4 +71,8 @@ const appLayout = createBrowserRouter([
 ]);
 
 const root = createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appLayout} />);
+root.render(
+  <StrictMode>
+    <RouterProvider router={appLayout} />
+  </StrictMode>
+);
