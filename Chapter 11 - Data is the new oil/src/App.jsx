@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createRoot } from "react-dom"; // Correct import statement
+import { createRoot } from "react-dom/client"; // Correct import statement
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { StrictMode } from "react";
 import Header from "./Header";
@@ -15,22 +15,29 @@ import { Shimmer } from "./Shimmer";
 import { useContext } from "react";
 import { contentManger } from "../utils/ContentManger";
 import { Provider } from "react";
-
+import { Provider, Provider } from "react-redux";
+import { Store } from "../utils/Store";
 const Instamart = lazy(() => import("./Instamart"));
 
 function App() {
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("Login");
   const [loginStatus, setLoginStatus] = useState(false);
-  console.log(Shimmer);
   return (
     <>
-      <contentManger.Provider
-        value={{ loginId: userName, setUserName, loginStatus, setLoginStatus }}
-      >
-        <Header />
-        <Outlet />
-        <Footer />
-      </contentManger.Provider>
+      <Provider store={Store}>
+        <contentManger.Provider
+          value={{
+            loginId: userName,
+            setUserName,
+            loginStatus,
+            setLoginStatus,
+          }}
+        >
+          <Header />
+          <Outlet />
+          <Footer />
+        </contentManger.Provider>
+      </Provider>
     </>
   );
 }

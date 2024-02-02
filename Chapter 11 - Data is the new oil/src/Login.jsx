@@ -42,7 +42,7 @@ const LoginPage = () => {
                 value={loginId}
                 onChange={handleChange}
                 className="mt-1 p-2 w-full border rounded-md"
-                maxLength={15}
+                maxLength={10}
               />
               <Link to={location ? `/${location}` : "/mumbai"}>
                 <button

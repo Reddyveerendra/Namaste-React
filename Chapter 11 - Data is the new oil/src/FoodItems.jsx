@@ -3,9 +3,18 @@ import { imgPrefix } from "./Config";
 import { useState } from "react";
 import CircleSquareIconRed from "./CircleSquareIcon";
 import { CircleSquareIconGreen } from "./CircleSquareIcon";
+import { addItem, removeItem } from "../utils/CartSlice";
+import { useDispatch } from "react-redux";
 const FoodItems = (props) => {
   const [count, SetCount] = useState(0);
   const item = props.item;
+  const dispatch = useDispatch();
+  const handleAdd = (item) => {
+    dispatch(addItem(item));
+  };
+  const handleRemove = (item) => {
+    dispatch(removeItem(item));
+  };
   return (
     <div className="item" key={item.id}>
       <div
@@ -44,9 +53,12 @@ const FoodItems = (props) => {
             <button
               type="button"
               onClick={() => {
-                SetCount((val) => {
-                  return val === 0 ? 0 : val - 1;
-                });
+                count > 0
+                  ? (SetCount((val) => {
+                      return val === 0 ? 0 : val - 1;
+                    }),
+                    handleRemove(item))
+                  : "";
               }}
             >
               -
@@ -57,7 +69,8 @@ const FoodItems = (props) => {
               onClick={() => {
                 SetCount((val) => {
                   return val + 1;
-                });
+                }),
+                  handleAdd(item);
               }}
             >
               +
