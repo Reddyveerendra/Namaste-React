@@ -18,11 +18,12 @@ const Card = (props) => {
     <Link
       to={`/${location.location}/${id}`}
       key={id} // Added key prop here
-      className="no-underline"
+      className="no-underline "
     >
       <div
-        className="card text-pretty flex-column max-w-* max-h-* m-[28px] p-[8px] flex underline-offset-0"
+        className="bg-gray-300 card text-pretty flex-column max-w-* max-h-* m-[28px] p-[8px] flex underline-offset-0"
         key={id}
+        style={{ background: "#dedede" }}
       >
         <div className="restaurantImage">
           <img
