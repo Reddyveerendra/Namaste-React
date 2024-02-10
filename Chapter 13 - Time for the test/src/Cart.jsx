@@ -52,19 +52,19 @@ const Cart = () => {
                         alt={item?.imageId}
                         className="h-[71px] w-[84px]"
                       />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          handleRemove(item);
-                        }}
-                        className="bg-red-500 rounded-lg p-[4px] mx-[20px]"
-                      >
-                        Delete
-                      </button>
                     </>
                   ) : (
                     ""
                   )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleRemove(item);
+                    }}
+                    className="bg-red-500 rounded-lg p-[4px] mx-[20px]"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
